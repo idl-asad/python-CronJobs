@@ -5,17 +5,20 @@ ARG db_password
 ARG db_host
 ARG db_database
 ARG db_port
+ARG docker_network
 
 ENV db_user "${db_user}"
 ENV db_password "${db_password}"
 ENV db_database "${db_database}"
 ENV db_host "${db_host}"
 ENV db_port "${db_port}"
-
+ENV docker_network "${docker_network}"
 
 COPY ./ /opt/cronScripts
 
 WORKDIR /opt/cronScripts
+
+RUN apt-get update && apt-get -y install cron
 
 RUN pip install -r requirement.txt
 
