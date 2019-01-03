@@ -1,0 +1,2 @@
+0 0/1 * 1/1 * ? * /usr/bin/python /opt/cronScripts/manager.py
+0 0/1 * 1/1 * ? * /usr/bin/python /opt/cronScripts/worker.py
