@@ -12,9 +12,12 @@ ENV db_database "${db_database}"
 ENV db_host "${db_host}"
 ENV db_port "${db_port}"
 
-WORKDIR /opt/cronScripts
 
 COPY ./ /opt/cronScripts
+
+WORKDIR /opt/cronScripts
+
+RUN pip install -r requirement.txt
 
 COPY crontab /etc/cron.d/cb-Scripts
 
