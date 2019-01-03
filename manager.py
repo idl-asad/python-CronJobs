@@ -9,7 +9,7 @@ config = {
   'password': os.environ['db_password'],
   'host': os.environ['db_host'],
   'database': os.environ['db_database'],
-  'port': os.environ['db_port'],
+  'port': int(os.environ['db_port']),
   'raise_on_warnings': True
 }
 
