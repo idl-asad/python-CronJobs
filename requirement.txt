@@ -1,0 +1,4 @@
+croniter==0.3.26
+mysql-connector==2.1.6
+python-dateutil==2.7.5
+six==1.12.0
