@@ -1,4 +1,4 @@
-FROM python:3-alpine
+FROM python:3-slim-stretch
 
 ARG db_user
 ARG db_password
@@ -19,10 +19,17 @@ WORKDIR /opt/cronScripts
 
 RUN pip install -r requirement.txt
 
+RUN chmod +x /opt/cronScripts/manager.py
+RUN chmod +x /opt/cronScripts/worker.py
+RUN chmod +x /opt/cronScripts/cron.sh
+
 COPY crontab /etc/cron.d/cb-Scripts
 
 RUN chmod 0644 /etc/cron.d/cb-Scripts
+RUN crontab /etc/cron.d/cb-Scripts
 
-RUN service cron start
+RUN touch /var/log/cron.log
+
+CMD cron && tail -f /var/log/cron.log
 
 
