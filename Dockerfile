@@ -32,8 +32,7 @@ RUN chmod 0644 /etc/cron.d/cb-Scripts
 RUN crontab /etc/cron.d/cb-Scripts
 
 # copy root user enviroment variables to /continer.env 
-RUN declare -p | grep -Ev 'BASHOPTS|BASH_VERSINFO|EUID|PPID|SHELLOPTS|UID' > /container.env
-
+RUN declare -p | grep -E 'db_user|db_host|db_password|db_port|db_database' > /container.env
 RUN touch /var/log/cron.log
 
 CMD cron && tail -f /var/log/cron.log
