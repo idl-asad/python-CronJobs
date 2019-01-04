@@ -33,6 +33,6 @@ RUN crontab /etc/cron.d/cb-Scripts
  
 RUN touch /var/log/cron.log
 
-CMD ["/bin/bash", "-c", "declare -p | grep -E 'db_user|db_host|db_password|db_port|db_database' > /container.env && cron && tail -f /var/log/cron.log"]
+CMD ["/bin/bash", "-c", "declare -p | grep -E 'db_user|db_host|db_password|db_port|db_database' > /container.env", "cron", "-f"]
 
 
