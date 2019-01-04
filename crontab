@@ -1,4 +1,4 @@
 SHELL=/bin/sh
 PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
-
-*/1 * * * * /bin/bash /opt/cronScripts/cron.sh >> /var/log/cron.log 2>&:q1
+BASH_ENV=/container.env
+*/1 * * * * /bin/bash /opt/cronScripts/cron.sh >> /var/log/cron.log 2>&1
