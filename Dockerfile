@@ -18,7 +18,8 @@ COPY ./ /opt/cronScripts
 
 WORKDIR /opt/cronScripts
 
-RUN apt-get update && apt-get -y install cron && apt-get -yqq install docker.io
+RUN apt-get update && apt-get -y install cron && apt-get install curl \
+        curl -sSL https://get.docker.com/ | sh
 
 RUN pip install -r requirement.txt
 
