@@ -10,7 +10,6 @@ config = {
   'password': os.environ['db_password'],
   'host': os.environ['db_host'],
   'database': os.environ['db_database'],
-  'port': os.environ['db_port'],
   'raise_on_warnings': True
 }
 
@@ -33,7 +32,7 @@ for item in readyToRunMetric:
     endDate = datetime.now().date()
     print("running job......", item[0], item[1], sep='***')
     runJob = ("docker run --rm -e StartDate={0} -e EndDate={1} -e Input_ModelID={2} -e IncludeMetrics={3} "
-              "--net={4} cb_cronjob:{5}").format(startDate, endDate, item[0], item[1], os.environ['cb_network'], os.environ['cb_tag'])
+              "--network={4} cb_cronjob:{5}").format(startDate, endDate, item[0], item[1], os.environ['cb_network'], os.environ['cb_tag'])
     logging.info("Running Job at {0} | {1}".format(datetime.now().isoformat(), runJob))
     subprocess.call(runJob, shell=True)
 

@@ -9,7 +9,6 @@ config = {
   'password': os.environ['db_password'],
   'host': os.environ['db_host'],
   'database': os.environ['db_database'],
-  'port': int(os.environ['db_port']),
   'raise_on_warnings': True
 }
 
@@ -38,10 +37,10 @@ for item in metrics:
     iterator = croniter(item[2], base)
     nextScheduleTime = iterator.get_next(datetime)
     addScheduler = ("INSERT INTO schedulerlist "
-                    "(model_id, metric_id, status, schedule_Time, next_schedule_time) "
-                    "VALUES (%s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE schedule_Time=%s, "
+                    "(model_id, metric_id, status, schedule_Time, next_schedule_time, last_schedule_time) "
+                    "VALUES (%s, %s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE schedule_Time=%s, "
                     "next_schedule_time=%s")
-    schedulerData = (item[0], item[1], "wait", item[2], nextScheduleTime.isoformat(), item[2],
+    schedulerData = (item[0], item[1], "wait", item[2], nextScheduleTime.isoformat(), datetime.now(), item[2],
                      nextScheduleTime)
     cursor.execute(addScheduler, schedulerData)
     cnx.commit()
