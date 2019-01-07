@@ -35,6 +35,6 @@ RUN touch /var/log/cron.log
 
 VOLUME /var/run/docker.sock
 
-CMD ["/bin/bash", "-c", "declare -p | grep -E 'db_user|db_host|db_password|db_port|db_database' > /container.env && cron && crontab /etc/cron.d/cb-scripts && tail -f /var/log/cron.log"]
+CMD ["/bin/bash", "-c", "declare -p | grep -E 'db_user|db_host|db_password|db_port|db_database|cb_network|cb_tag' > /container.env && cron && crontab /etc/cron.d/cb-scripts && tail -f /var/log/cron.log"]
 
 
