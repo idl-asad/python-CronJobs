@@ -30,7 +30,6 @@ RUN chmod +x /opt/cronScripts/cron.sh
 COPY crontab /etc/cron.d/cb-scripts
 
 RUN chmod 0644 /etc/cron.d/cb-scripts
-RUN crontab /etc/cron.d/cb-Scripts
  
 RUN touch /var/log/cron.log
 
